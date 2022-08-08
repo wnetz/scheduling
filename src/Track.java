@@ -37,7 +37,7 @@ public class Track
      */
     public boolean addMorning(Event event)
     {
-        if (getMorningTime() + event.duration() < MORNING_TIME) {
+        if (getMorningTime() + event.duration() <= MORNING_TIME) {
             morning.add(event);
             return true;
         } else {
@@ -52,7 +52,7 @@ public class Track
      */
     public boolean addEvening(Event event)
     {
-        if (getEveningTime() + event.duration() < EVENING_TIME) {
+        if (getEveningTime() + event.duration() <= EVENING_TIME) {
             evening.add(event);
             return true;
         } else {
