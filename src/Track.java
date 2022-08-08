@@ -60,6 +60,15 @@ public class Track
         }
     }
 
+    /**
+     * wipe out all events scheduled in this track
+     */
+    public void reset()
+    {
+        morning.clear();
+        evening.clear();
+    }
+
     //todo
     @Override
     public String toString() {
