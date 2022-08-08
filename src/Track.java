@@ -37,7 +37,7 @@ public class Track
      */
     public boolean addMorning(Event event)
     {
-        if (getMorningTime() + event.duration() > MORNING_TIME) {
+        if (getMorningTime() + event.duration() < MORNING_TIME) {
             morning.add(event);
             return true;
         } else {
@@ -52,7 +52,7 @@ public class Track
      */
     public boolean addEventing(Event event)
     {
-        if (getEveningTime() + event.duration() > EVENING_TIME) {
+        if (getEveningTime() + event.duration() < EVENING_TIME) {
             evening.add(event);
             return true;
         } else {
@@ -60,7 +60,6 @@ public class Track
         }
     }
 
-    //todo
     @Override
     public String toString() {
         return super.toString();
@@ -69,15 +68,13 @@ public class Track
     public ArrayList<Event> getEvening() {
         return evening;
     }
-
-    public void setEvening(ArrayList<Event> evening) {
-        this.evening = evening;
-    }
-
     public ArrayList<Event> getMorning() {
         return morning;
     }
 
+    public void setEvening(ArrayList<Event> evening) {
+        this.evening = evening;
+    }
     public void setMorning(ArrayList<Event> morning) {
         this.morning = morning;
     }
