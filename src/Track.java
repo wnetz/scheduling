@@ -69,8 +69,25 @@ public class Track
         evening.clear();
     }
     @Override
-    public String toString() {
-        return super.toString();
+    public String toString()
+    {
+        String track = "";
+        Time time = new Time(9,0,true);
+        for(Event event:morning)
+        {
+            track = track + time + "\t" + event + "\n";
+            time.addTime(event.duration());
+        }
+        time.setTime(12,0,false);
+        track = track + time + "\tLunch\n";
+        time.setTime(1,0,false);
+        for(Event event:evening)
+        {
+            track = track + time + "\t" + event + "\n";
+            time.addTime(event.duration());
+        }
+        track = track + time + "\tNetworking event";
+        return track;
     }
 
     public ArrayList<Event> getEvening() {
