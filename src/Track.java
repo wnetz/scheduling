@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Track
 {
-    private final int MORNING_TIME = 180;
-    private final int EVENING_TIME = 240;
+    public static final int MORNING_TIME = 180;
+    public static final int EVENING_TIME = 299;
     private ArrayList<Event> morning;
     private ArrayList<Event> evening;
     public Track()
@@ -85,6 +85,10 @@ public class Track
         {
             track = track + time + "\t" + event + "\n";
             time.addTime(event.duration());
+        }
+        if(time.getHour() < 4)
+        {
+            time.setTime(4,0,false);
         }
         track = track + time + "\tNetworking event";
         return track;

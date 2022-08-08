@@ -17,19 +17,35 @@ public class Main
 
         fillEvents();
         events = new ArrayList<>(events.stream().sorted().collect(Collectors.toList()));
-        events.forEach(e -> System.out.println(e));
 
+        //initialise track to the theoretical minimum number of tracks
+        int numTracks = events.parallelStream().reduce(0, (acc, next) -> acc + next.duration(), (t1, t2) -> t1 + t2) / (Track.MORNING_TIME+Track.EVENING_TIME);
+        createTracks(numTracks);
 
+        //make deep copy of events
+        ArrayList<Event> eventsCopy = new ArrayList<>();
+        for(Event event: events)
+        {
+            eventsCopy.add(event);
+        }
 
-        //createTracks
-        /**
-         * Add event to the list of events scheduled for the morning
-         * @param event
-         * @return True if event was added, false if the event could not be added
-         */
+        //while no solution exists increment the number of tracks
+        while (!solve(eventsCopy))
+        {
+            numTracks++;
+            createTracks(numTracks);
+            //make deep copy of events
+            eventsCopy = new ArrayList<>();
+            for(Event event: events)
+            {
+                eventsCopy.add(event);
+            }
+        }
 
-        
-        //print solution
+        for(Track track:tracks)
+        {
+            System.out.println(track + "\n");
+        }
 
     }
 
@@ -74,12 +90,39 @@ public class Main
                 .collect(Collectors.toList()));
     }
 
-    public void createTracks()
+    public static void createTracks(int numTracks)
     {
-        //tracks = total time / 420
-        int minNumTracks = events.parallelStream().reduce(0, (acc, next) -> acc + next.duration(), (t1, t2) -> t1 + t2) / 420;
-        for (int i = 0; i < minNumTracks; i++) {
+        tracks = new ArrayList<>();
+        for (int i = 0; i < numTracks; i++) {
             tracks.add(new Track());
         }
+    }
+
+    public static boolean solve(ArrayList<Event> events)
+    {
+        int size;
+        do
+        {
+            size = events.size();
+            for (Track track : tracks)
+            {
+                if(events.size()>0)
+                {
+                    if(!track.addMorning(events.get(events.size()-1)))
+                    {
+                        if(track.addEvening(events.get(events.size()-1)))
+                        {
+                            events.remove(events.get(events.size()-1));
+                        }
+                    }
+                    else
+                    {
+                        events.remove(events.get(events.size()-1));
+                    }
+                }
+            }
+        }
+        while (size != events.size());
+        return events.size()==0;
     }
 }
