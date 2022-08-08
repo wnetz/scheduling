@@ -74,7 +74,7 @@ public class Main
     public void createTracks()
     {
         //tracks = total time / 420
-        int minNumTracks = events.parallelStream().reduce(0, (acc, next) -> acc + next.duration(), (t1, t2) -> t1 + t2);
+        int minNumTracks = events.parallelStream().reduce(0, (acc, next) -> acc + next.duration(), (t1, t2) -> t1 + t2) / 420;
         for (int i = 0; i < minNumTracks; i++) {
             tracks.add(new Track());
         }
