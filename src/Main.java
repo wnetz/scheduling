@@ -16,7 +16,10 @@ public class Main
         System.out.println("Hello World");
 
         fillEvents();
-        //sort events
+        events = new ArrayList<>(events.stream().sorted().collect(Collectors.toList()));
+        events.forEach(e -> System.out.println(e));
+
+
 
         //createTracks
         /**
@@ -41,11 +44,29 @@ public class Main
         {
             System.out.println("no File");
         }
+        // have to use \\^ instead of ^ because ^ is an escape charector
         events = new ArrayList<>(evnts.stream()
-                .filter(event -> event.split("^").length == 2)
-                .map(a->{
-                    String[] event = a.split("^");
-                    return new Event(event[0],Integer.valueOf(event[1]));
+                .filter(event -> event.split("\\^").length == 2)
+                .map(a->
+                {
+                    String[] event = a.split("\\^");
+                    if(event[1].equals("lightning"))
+                    {
+                        return new Event(event[0],5);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            return new Event(event[0], Integer.valueOf(event[1]));
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(event[1] +  " is an invalid time");
+                            return null;
+                        }
+
+                    }
                 })
                 .collect(Collectors.toList()));
     }

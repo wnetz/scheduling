@@ -2,7 +2,7 @@ public record Event(String description, int duration) implements Comparable<Even
 {
     @Override
     public String toString() {
-        return description + "\t" + (duration == 5 ? "lighting" : duration + "min");
+        return description + "\t" + (duration == 5 ? "lighting" : duration + " min");
     }
 
     @Override
