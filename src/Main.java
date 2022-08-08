@@ -7,13 +7,14 @@ import java.util.stream.Collectors;
 
 public class Main
 {
+    static final String INPUT_FILE = "./src/input.txt";
     static ArrayList<Track> tracks;
     static ArrayList<Event> events;
 
     public static void main(String[] args)
     {
 
-        fillEvents("./src/input.txt");
+        fillEvents(INPUT_FILE);
         events = new ArrayList<>(events.stream().sorted().collect(Collectors.toList()));
 
         //initialise track to the theoretical minimum number of tracks
