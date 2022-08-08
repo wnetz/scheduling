@@ -33,6 +33,9 @@ public class Main
 
     }
 
+    /**
+     * fill events with input fotm file
+     */
     public static void fillEvents()
     {
         List<String> evnts = new ArrayList<>();

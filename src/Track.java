@@ -68,8 +68,6 @@ public class Track
         morning.clear();
         evening.clear();
     }
-
-    //todo
     @Override
     public String toString() {
         return super.toString();
@@ -78,15 +76,13 @@ public class Track
     public ArrayList<Event> getEvening() {
         return evening;
     }
-
-    public void setEvening(ArrayList<Event> evening) {
-        this.evening = evening;
-    }
-
     public ArrayList<Event> getMorning() {
         return morning;
     }
 
+    public void setEvening(ArrayList<Event> evening) {
+        this.evening = evening;
+    }
     public void setMorning(ArrayList<Event> morning) {
         this.morning = morning;
     }
