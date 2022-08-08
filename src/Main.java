@@ -12,7 +12,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        System.out.println("Hello World");
 
         fillEvents("./src/input.txt");
         events = new ArrayList<>(events.stream().sorted().collect(Collectors.toList()));
