@@ -15,7 +15,7 @@ public class Main
     {
         System.out.println("Hello World");
 
-        fillEvents();
+        fillEvents("./src/input.txt");
         events = new ArrayList<>(events.stream().sorted().collect(Collectors.toList()));
 
         //initialise track to the theoretical minimum number of tracks
@@ -52,12 +52,12 @@ public class Main
     /**
      * fill events with input fotm file
      */
-    public static void fillEvents()
+    public static void fillEvents(String path)
     {
         List<String> evnts = new ArrayList<>();
         try
         {
-            evnts = Files.readAllLines(Paths.get("./src/input.txt"));
+            evnts = Files.readAllLines(Paths.get(path));
         }
         catch (IOException e)
         {
