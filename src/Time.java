@@ -30,6 +30,11 @@ public class Time
 
     @Override
     public String toString() {
-        return hour + ":"+min+ (am?"AM":"PM");
+        return (hour < 10 ? "0" + hour: hour) + ":"+(min<10? "0" + min: min)+ (am?"AM":"PM");
+    }
+
+    public int getHour()
+    {
+        return hour;
     }
 }
