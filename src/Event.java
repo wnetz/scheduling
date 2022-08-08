@@ -1,11 +1,12 @@
-public record Event(String description, int duration) implements Comparable
+public record Event(String description, int duration) implements Comparable<Event>
 {
     @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-    @Override
     public String toString() {
-        return null;
+        return description + "\t" + (duration == 5 ? "lighting" : duration + "min");
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        return Integer.compare(duration, o.duration);
     }
 }
