@@ -87,6 +87,7 @@ public class Main
 
                     }
                 })
+                .filter(duration -> duration != null)
                 .collect(Collectors.toList()));
     }
 
