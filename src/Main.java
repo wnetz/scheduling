@@ -10,6 +10,7 @@ public class Main
 {
     static ArrayList<Track> tracks;
     static ArrayList<Event> events;
+
     public static void main(String[] args)
     {
         System.out.println("Hello World");
@@ -21,7 +22,13 @@ public class Main
 
 
         //createTracks
+        /**
+         * Add event to the list of events scheduled for the morning
+         * @param event
+         * @return True if event was added, false if the event could not be added
+         */
 
+        
         //print solution
 
     }
@@ -66,16 +73,13 @@ public class Main
                 })
                 .collect(Collectors.toList()));
     }
+
     public void createTracks()
     {
         //tracks = total time / 420
-        /*
-        copy events
-        while(copy != 0)
-        {
-            solve with tracks
-            tracks ++
+        int minNumTracks = events.parallelStream().reduce(0, (acc, next) -> acc + next.duration(), (t1, t2) -> t1 + t2);
+        for (int i = 0; i < minNumTracks; i++) {
+            tracks.add(new Track());
         }
-         */
     }
 }

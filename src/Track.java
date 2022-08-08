@@ -50,7 +50,7 @@ public class Track
      * @param event
      * @return True if event was added, false if the event could not be added
      */
-    public boolean addEventing(Event event)
+    public boolean addEvening(Event event)
     {
         if (getEveningTime() + event.duration() < EVENING_TIME) {
             evening.add(event);
@@ -60,6 +60,14 @@ public class Track
         }
     }
 
+    /**
+     * wipe out all events scheduled in this track
+     */
+    public void reset()
+    {
+        morning.clear();
+        evening.clear();
+    }
     @Override
     public String toString() {
         return super.toString();
